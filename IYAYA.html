@@ -1,0 +1,2469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garis Alam - Tempat Pariwisata Jawa Timur</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .logo span {
+            color: #ff9800;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2e7d32;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            min-height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #1b5e20;
+        }
+
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Video Carousel Styles */
+        .video-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .video-carousel.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .carousel-track-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            opacity: 0.7;
+            transform: scale(0.9);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-caption {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-style: italic;
+            padding: 0 15px;
+        }
+
+        /* Video Fallback */
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-fallback p {
+            margin-bottom: 15px;
+        }
+
+        .video-fallback a {
+            color: #ff9800;
+            text-decoration: underline;
+        }
+
+        /* Carousel Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(46, 125, 50, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-btn:hover {
+            background: rgba(27, 94, 32, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn:disabled {
+            background: rgba(204, 204, 204, 0.7);
+            cursor: not-allowed;
+            transform: translateY(-50%);
+        }
+
+        .carousel-btn--left {
+            left: 20px;
+        }
+
+        .carousel-btn--right {
+            right: 20px;
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background-color: #2e7d32;
+            transform: scale(1.2);
+        }
+
+        /* Destinasi Section */
+        .destinasi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .destinasi-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, opacity 0.8s, transform 0.8s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .destinasi-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .destinasi-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .destinasi-card:hover .card-img img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
+
+        .card-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            margin-top: 40px;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .pagination.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page-item {
+            display: inline-block;
+        }
+
+        .page-link {
+            display: block;
+            padding: 10px 15px;
+            background-color: white;
+            color: #2e7d32;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .page-link:hover {
+            background-color: #f1f1f1;
+        }
+
+        .page-item.active .page-link {
+            background-color: #2e7d32;
+            color: white;
+            border-color: #2e7d32;
+        }
+
+        /* Navigation Buttons */
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background-color: #1b5e20;
+        }
+
+        .nav-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            margin: 0 15px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        /* Tentang Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img, .about-text {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .about-img.visible, .about-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2e7d32;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        /* Kontak Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info, .contact-form {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .contact-info.visible, .contact-form.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: #2e7d32;
+        }
+
+        .contact-details {
+            margin-bottom: 30px;
+        }
+
+        .contact-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-right: 10px;
+            color: #2e7d32;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #2e7d32;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: #1b5e20;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Alert Styles */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 1000px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalopen 0.4s;
+        }
+
+        @keyframes modalopen {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .modal-header {
+            padding: 30px 30px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-header h2 {
+            font-size: 28px;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-section {
+            margin-bottom: 30px;
+        }
+
+        .modal-section h3 {
+            font-size: 22px;
+            color: #2e7d32;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2e7d32;
+            padding-bottom: 5px;
+        }
+
+        .modal-section p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .modal-section ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .modal-section li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2e7d32;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .footer-column.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #e0e0e0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .copyright.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 40px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .about-text h3 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: row;
+                padding: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .destinasi-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            .modal-body {
+                padding: 20px;
+                max-height: 80vh;
+            }
+
+            .modal-header {
+                padding: 20px 20px 0;
+            }
+
+            .modal-header h2 {
+                font-size: 24px;
+            }
+
+            .modal-section h3 {
+                font-size: 20px;
+            }
+
+            /* Carousel mobile styles */
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .carousel-btn--left {
+                left: 10px;
+            }
+
+            .carousel-btn--right {
+                right: 10px;
+            }
+
+            /* Swipe indicator for mobile */
+            .swipe-indicator {
+                display: block;
+                text-align: center;
+                margin-top: 10px;
+                color: #666;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 50vh;
+                min-height: 350px;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .hero-content p {
+                font-size: 14px;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+            
+            .section-title p {
+                font-size: 14px;
+            }
+            
+            .destinasi-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .card-img {
+                height: 180px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .modal-content {
+                width: 98%;
+                margin: 10px auto;
+            }
+
+            .modal-body {
+                padding: 15px;
+            }
+
+            .modal-header {
+                padding: 15px 15px 0;
+            }
+
+            .modal-header h2 {
+                font-size: 22px;
+            }
+
+            .modal-section h3 {
+                font-size: 18px;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .page-link {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .pagination-info {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+        }
+
+        /* Swipe indicator - hidden by default on desktop */
+        .swipe-indicator {
+            display: none;
+        }
+
+        /* Loading indicator for images */
+        .image-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Garis <span>Alam</span></div>
+                <button class="hamburger">☰</button>
+                <ul class="nav-links">
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#destinasi">Destinasi</a></li>
+                    <li><a href="#video">Video</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero">
+        <div class="hero-content">
+            <h1>Jelajahi Keindahan Jawa Timur</h1>
+            <p>Temukan destinasi wisata alam terbaik di Jawa Timur, dari pegunungan hijau hingga pantai eksotis yang memukau.</p>
+            <a href="#destinasi" class="btn">Jelajahi Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Destinasi Section -->
+    <section id="destinasi">
+        <div class="container">
+            <div class="section-title">
+                <h2>Destinasi Populer</h2>
+                <p>Nikmati berbagai tempat wisata alam yang menakjubkan di seluruh Jawa Timur</p>
+            </div>
+            <div class="destinasi-grid" id="destinations-container">
+                <!-- Destinasi akan dimuat di sini melalui JavaScript -->
+            </div>
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination akan di-generate oleh JavaScript -->
+            </div>
+            <!-- Swipe indicator for mobile -->
+            <div class="swipe-indicator" id="swipeIndicator">
+                ⬅️ Geser untuk navigasi halaman ➡️
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video">
+        <div class="container">
+            <div class="section-title">
+                <h2>Video Keindahan Jawa Timur</h2>
+                <p>Saksikan keindahan alam Jawa Timur dalam video dokumenter yang memukau</p>
+            </div>
+            
+            <!-- Video Carousel -->
+            <div class="video-carousel" id="videoCarousel">
+                <div class="carousel-track-container">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Video slides akan diisi oleh JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Navigation buttons -->
+                <button class="carousel-btn carousel-btn--left" id="prevVideoBtn">
+                    &larr;
+                </button>
+                <button class="carousel-btn carousel-btn--right" id="nextVideoBtn">
+                    &rarr;
+                </button>
+                
+                <!-- Carousel indicators -->
+                <div class="carousel-indicators" id="carouselIndicators">
+                    <!-- Indicators akan diisi oleh JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Swipe indicator for mobile -->
+            <div class="swipe-indicator" id="videoSwipeIndicator">
+                ⬅️ Geser untuk melihat video lainnya ➡️
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Section -->
+    <section id="tentang">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Garis Alam</h2>
+                <p>Mengenal lebih dekat dengan platform wisata alam Jawa Timur terpercaya</p>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Tentang Garis Alam">
+                </div>
+                <div class="about-text">
+                    <h3>Mengenal Keindahan Jawa Timur</h3>
+                    <p>Garis Alam adalah platform wisata yang berfokus pada pengenalan dan promosi destinasi wisata alam di Jawa Timur. Kami berkomitmen untuk menyajikan informasi akurat dan terpercaya tentang berbagai tempat wisata yang menakjubkan.</p>
+                    <p>Dengan pengalaman bertahun-tahun dalam industri pariwisata, kami memahami kebutuhan traveler yang ingin menjelajahi keindahan alam Jawa Timur. Kami menyediakan panduan lengkap, tips perjalanan, dan rekomendasi destinasi terbaik.</p>
+                    <p>Tim kami terdiri dari para ahli pariwisata dan pecinta alam yang selalu siap membantu Anda merencanakan perjalanan yang tak terlupakan di bumi Jawa Timur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak Section -->
+    <section id="kontak">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+                <p>Jangan ragu untuk menghubungi kami untuk informasi lebih lanjut</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <div class="contact-details">
+                        <p><i>📍</i> Fakultas Vokasi, UM Jalan Semarang 5, Malang 65145</p>
+                        <p><i>📞</i> +62 857 0627 4050</p>
+                        <p><i>✉️</i> shinru395@gmail.com</p>
+                    </div>
+                    <h3>Ikuti Kami</h3>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/arunika_sajeeva?igsh=ZXZzb3NsbHhzcmZx&utm_source=qr"><i>ig</i></a>
+                        <a href="#"><i>tw</i></a>
+                        <a href="#"><i>yt</i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <div id="alert-message" class="alert" style="display: none;"></div>
+                    <form id="contactForm">
+                        <input type="text" id="name" name="name" placeholder="Nama Lengkap" required>
+                        <input type="email" id="email" name="email" placeholder="Alamat Email" required>
+                        <input type="text" id="subject" name="subject" placeholder="Subjek" required>
+                        <textarea id="message" name="message" placeholder="Pesan Anda" required></textarea>
+                        <button type="submit" class="btn" id="submitBtn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Garis Alam</h3>
+                    <p>Platform wisata alam terpercaya untuk mengeksplorasi keindahan Jawa Timur dengan informasi akurat dan rekomendasi terbaik.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#beranda">Beranda</a></li>
+                        <li><a href="#destinasi">Destinasi</a></li>
+                        <li><a href="#video">Video</a></li>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Destinasi Populer</h3>
+                    <ul>
+                        <li><a href="https://maps.app.goo.gl/Vsh9rByXfsDZ1i4S8">Gunung Bromo</a></li>
+                        <li><a href="https://maps.app.goo.gl/JKkd6keponVsPt7G8">Kawah Ijen</a></li>
+                        <li><a href="https://maps.app.goo.gl/9ZAz8Spk3xUce2L8A">Air Terjun Madakaripura</a></li>
+                        <li><a href="https://maps.app.goo.gl/8ua7aqrU3K8dgvjS8">Pantai Balekambang</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Layanan</h3>
+                    <ul>
+                        <li><a href="#">Paket Wisata</a></li>
+                        <li><a href="#">Panduan Perjalanan</a></li>
+                        <li><a href="#">Tips Wisata</a></li>
+                        <li><a href="#">Blog Perjalanan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Garis Alam. Semua Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal untuk detail destinasi -->
+    <div id="destinationModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <div class="modal-header">
+                <h2 id="modalTitle">Gunung Bromo</h2>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Konten modal akan dimuat di sini melalui JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- EmailJS Script -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("QShw7H8y1KoiSCRx4");
+        })();
+
+        // Data destinasi wisata dengan detail lengkap
+        const destinations = [
+            {
+                id: 1,
+                name: "Gunung Bromo",
+                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Nikmati keindahan matahari terbit di atas kawah Gunung Bromo yang legendaris, salah satu ikon wisata Jawa Timur.",
+                detail: {
+                    title: "Gunung Bromo: Menyaksikan Kemegahan Sang Dewa di Atas Awan",
+                    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                    content: `
+                        <div class="modal-section">
+                            <p>Gunung Bromo adalah salah satu destinasi wisata paling ikonik di Indonesia. Terletak di Taman Nasional Bromo Tengger Semeru, gunung ini menawarkan pemandangan alam yang dramatis dan tak terlupakan, seolah-olah membawa Anda ke dunia lain.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Mengapa Harus Mengunjungi Gunung Bromo?</h3>
+                            <ul>
+                                <li><strong>Sunrise di Penanjakan 1:</strong> Pengalaman utama yang wajib dilakukan. Menyaksikan matahari terbit perlahan menerangi hamparan lautan pasir, dengan siluet Gunung Bromo dan Gunung Semeru di kejauhan adalah pemandangan yang magis.</li>
+                                <li><strong>Lautan Pasir (Segara Wedi):</strong> Hamparan pasir yang luas dan misterius. Anda bisa berjalan kaki, menunggang kuda, atau naik jeep untuk melintasinya menuju ke kaki Gunung Bromo.</li>
+                                <li><strong>Kawah Bromo yang Mendidih:</strong> Dengarkan suara gemuruh dari dalam bumi dan saksikan asap belerang putih mengepul dari kawahnya. Perjalanan menaiki tangga menuju bibir kawah adalah momen yang penuh tantangan dan reward.</li>
+                                <li><strong>Budaya Suku Tengger:</strong> Rasakan kekayaan budaya lokal dari Suku Tengger yang tinggal di sekitar kawasan Bromo. Mereka dikenal dengan ritual Kasada, sebuah upacara adat yang digelar setiap tahun.</li>
+                                <li><strong>Pemandangan Alam yang Dramatis:</strong> Kombinasi antara kaldera, lautan pasir, dan pegunungan hijau menciptakan lanskap yang sangat fotogenik, bagaikan lukisan alam yang hidup.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Informasi Penting untuk Perencanaan Perjalanan</h3>
+                            <h4>Lokasi</h4>
+                            <p>Gunung Bromo terletak di dalam Taman Nasional Bromo Tengger Semeru, yang membentang di empat kabupaten: Probolinggo, Pasuruan, Lumajang, dan Malang, Provinsi Jawa Timur.</p>
+                            
+                            <h4>Akses Menuju Bromo</h4>
+                            <ul>
+                                <li><strong>Kota Penghubung:</strong> Malang atau Surabaya.</li>
+                                <li><strong>Dari Surabaya:</strong> Perjalanan darat menuju kota pintu masuk seperti Probolinggo atau Malang memakan waktu sekitar 2-3 jam.</li>
+                                <li><strong>Dari Malang:</strong> Perjalanan menuju area wisata Bromo memakan waktu sekitar 2 jam.</li>
+                                <li><strong>Transportasi Terakhir:</strong> Untuk menuju titik start sunrise (seperti Penanjakan) atau lautan pasir, Anda membutuhkan jeep 4x4 (biasanya disewa dengan paket tour) atau motor trail.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Aktivitas & Destinasi Utama di Kawasan Bromo</h3>
+                            <ul>
+                                <li><strong>Viewpoint Sunrise:</strong>
+                                    <ul>
+                                        <li>Penanjakan 1: Spot paling populer dan terkenal. Ramai, tetapi menawarkan pemandangan terbaik.</li>
+                                        <li>King Kong Hill & Seruni Point: Alternatif lain yang juga menawarkan pemandangan sunrise yang tak kalah indah dengan kerumunan yang sedikit lebih sepi.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Lautan Pasir dan Bukit Teletubbies:</strong> Area luas untuk foto dan berswafoto dengan latar belakang bukit-bukit hijau yang landai.</li>
+                                <li><strong>Kawah Bromo:</strong> Naik sekitar 250 anak tangga untuk sampai ke bibir kawah dan melihat langsung sumber suara gemuruh serta asap belerang.</li>
+                                <li><strong>Pura Luhur Poten:</strong> Sebuah pura yang digunakan oleh Suku Tengger untuk upacara Yadnya Kasada. Arsitekturnya yang unik menjadi latar foto yang menarik.</li>
+                                <li><strong>Savana dan Bukit Cinta:</strong> Area padang rumput yang hijau dengan pemandangan langsung ke Gunung Semeru.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Tips Berkunjung ke Bromo</h3>
+                            <ul>
+                                <li><strong>Waktu Terbaik Berkunjung:</strong> Musim kemarau (April - Oktober). Untuk melihat sunrise, pastikan datang sangat pagi (biasanya start dari pukul 03.00 dini hari).</li>
+                                <li><strong>Suhu Udara:</strong> Sangat dingin, terutama sebelum matahari terbit. Bisa mencapai 5 - 10°C. Disarankan memakai jaket tebal, syal, sarung tangan, dan penutup kepala.</li>
+                                <li><strong>Persiapan Fisik:</strong> Perjalanan menuju kawah membutuhkan tenaga untuk menaiki tangga. Persiapkan fisik dan minum air yang cukup.</li>
+                                <li><strong>Masker & Kacamata:</strong> Daerah lautan pasir bisa berdebu. Masker dan kacamata akan sangat membantu.</li>
+                                <li><strong>Tiket Masuk:</strong> Pastikan membeli tiket masuk Taman Nasional di loket resmi. Harga dapat berubah, pastikan untuk mengecek informasi terbaru.</li>
+                                <li><strong>Akomodasi:</strong> Bermalamlah di desa-desa sekitar seperti Cemoro Lawang, Ngadisari, atau Wonokitri untuk memudahkan akses menuju titik sunrise.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 2,
+                name: "Kawah Ijen",
+                image: "https://drive.google.com/thumbnail?id=11wPRlrfOzmELZdm1T6PzVHAkOrOtONTG&sz=w1000",
+                description: "Saksikan fenomena api biru yang langka dan pemandangan spektakuler dari kawah dengan danau asam terbesar di dunia.",
+                detail: {
+                    title: "Kawah Ijen: Keajaiban Api Biru dan Danau Belerang",
+                    image: "https://drive.google.com/thumbnail?id=11wPRlrfOzmELZdm1T6PzVHAkOrOtONTG&sz=w1000",
+                    content: `
+                        <div class="modal-section">
+                            <p>Kawah Ijen merupakan salah satu destinasi wisata alam yang berbentuk kawah belerang dan ada sebuah fenomena kimia langka di alam yaitu adanya api biru.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Gambaran Umum</h3>
+                            <p>Kawah Ijen merupakan salah satu destinasi wisata alam andalan di Jawa Timur. Gunung Ijen sendiri adalah sebuah gunung berapi yang terletak di perbatasan Kabupaten Banyuwangi dan Kabupaten Bondowoso. Gunung ini memiliki ketinggian ± 2386 meter di atas permukaan laut (mdpl). Danau kawah di Gunung Ijen diklaim sebagai danau kawah belerang terbesar di dunia.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Lokasi dan Akses</h3>
+                            <p><strong>Kabupaten:</strong> Banyuwangi, Jawa Timur.</p>
+                            
+                            <h4>Rute Perjalanan:</h4>
+                            <p>Rute yang diambil biasanya melalui pos paltuding yang berada di daerah desa banyusari dengan estimasi waktu pendakian sekitar 1,5 jam sampai dengan 2 jam dengan jarak tempuh 3 Km.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Keunikan dan Daya Tarik</h3>
+                            <ul>
+                                <li><strong>Fenomena Blue Fire (Api Biru):</strong> Kawah Ijen terkenal dengan fenomena api biru (blue fire) yang langka dan spektakuler, yang hanya dapat ditemukan di dua tempat di dunia, yaitu Kawah Ijen dan Ethiopia (atau Islandia). Api biru ini paling jelas terlihat saat musim kemarau, sekitar bulan Juli hingga September.</li>
+                                <li><strong>Danau Kawah Berwarna Toska:</strong> Di siang hari, danau kawah ini menawarkan pemandangan memukau berupa danau berwarna hijau toska yang terbentuk akibat akumulasi belerang.</li>
+                                <li><strong>Aktivitas Penambangan Belerang:</strong> Aktivitas pertambangan belerang masih berlangsung hingga kini, memberikan nuansa industri yang kontras dengan keindahan alam di sekitarnya.</li>
+                                <li><strong>Melihat Sunrise (Matahari Terbit):</strong> Pengunjung dapat menikmati keindahan matahari terbit yang spektakuler dari puncak Kawah Ijen.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Fasilitas di Sekitar</h3>
+                            <p>Fasilitas di Kawah Ijen terus dikembangkan. Beberapa fasilitas yang tersedia antara lain:</p>
+                            <ul>
+                                <li><strong>Area Parkir:</strong> Tersedia area parkir untuk kendaraan.</li>
+                                <li><strong>Toilet:</strong> Tersedia kamar mandi/toilet umum.</li>
+                                <li><strong>Warung/Kios:</strong> Tersedia beberapa warung/kios untuk memenuhi kebutuhan mendaki.</li>
+                                <li><strong>Pemandu Gunung Lokal:</strong> Pengunjung dapat memanfaatkan jasa pemandu gunung lokal.</li>
+                                <li><strong>Taksi Troli:</strong> Tersedia taksi troli bagi yang tidak kuat mendaki.</li>
+                                <li><strong>Pemandian air panas:</strong> Tersedia di area sekitar.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Harga Tiket Masuk dan Jam Buka</h3>
+                            <ul>
+                                <li><strong>Harga Tiket Masuk warga lokal:</strong> sekitar Rp 5.000,- (untuk hari biasa) dan Rp 7.500,- (untuk weekend)</li>
+                                <li><strong>Harga Tiket Masuk warga mancanegara:</strong> sekitar Rp 100.000,- (untuk hari biasa) dan Rp 150.000,- (untuk weekend)</li>
+                                <li><strong>Jam Operasional:</strong> Biasanya buka setiap hari dengan waktu 24 jam. Namun biasanya pada hari Jum'at pertama setiap bulan akan ditutup jalurnya untuk dibersihkan dan dicek.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Tips untuk Pengunjung</h3>
+                            <ul>
+                                <li><strong>Waktu Terbaik Melihat Blue Fire:</strong> Api biru akan mulai mengecil setelah pukul 05.00 pagi, jadi disarankan untuk tiba sebelum itu, biasanya pendakian dimulai sekitar jam 12 malam.</li>
+                                <li><strong>Pakaian:</strong> Pakai pakaian tebal karena suhu cukup dingin.</li>
+                                <li><strong>Masker:</strong> Jangan lupa membawa masker karena aroma belerang bisa cukup tajam.</li>
+                                <li><strong>Kondisi Fisik:</strong> Persiapkan fisik dengan baik karena perjalanan mendaki cukup menantang.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 3,
+                name: "Air Terjun Coban Canggu",
+                image: "https://drive.google.com/thumbnail?id=13zTsLCwg3YD61l8YmsX4T9DGqKCr1-dJ&sz=w1000",
+                description: "Rasakan sensasi menyegarkan di bawah air terjun tertinggi di Jawa Timur yang dikelilingi tebing-tebing tinggi.",
+                detail: {
+                    title: "Air Terjun Coban Canggu: Keindahan Penuh Misteri",
+                    image: "https://drive.google.com/thumbnail?id=13zTsLCwg3YD61l8YmsX4T9DGqKCr1-dJ&sz=w1000",
+                    content: `
+                        <div class="modal-section">
+                            <p>Air Terjun Coban Canggu adalah salah satu destinasi wisata alam yang memukau di Kabupaten Mojokerto, Jawa Timur. Terletak di kawasan pegunungan, air terjun ini menawarkan ketenangan, udara sejuk, dan pemandangan hijau yang menyegarkan mata. Jika Anda mencari pelarian dari hiruk-pikuk kota, Coban Canggu adalah jawabannya.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Gambaran Umum</h3>
+                            <p>Coban Canggu bukan sekadar air terjun biasa. Daya tarik utamanya adalah bentuknya yang unik, di mana air jatuh meluncur di antara dua tebing batu yang ditutupi oleh lumut hijau, membentuk semacam "celah" atau "koridor" alami. Suara gemericik air yang jatuh ke kolam bening di bawahnya menciptakan atmosfer yang sangat menenangkan.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Lokasi dan Akses</h3>
+                            <p><strong>Desa:</strong> Sumbertimo</p>
+                            <p><strong>Kecamatan:</strong> Pacet</p>
+                            <p><strong>Kabupaten:</strong> Mojokerto, Jawa Timur</p>
+                            
+                            <h4>Rute Perjalanan:</h4>
+                            <p>Dari Kota Mojokerto atau Surabaya, perjalanan menuju Pacet sudah cukup mudah dengan jalan aspal yang baik. Setibanya di area Pacet, Anda akan memasuki jalan menanjak dengan pemandangan persawahan dan perkebunan. Petunjuk arah menuju Coban Canggu umumnya sudah cukup jelas. Perjalanan terakhir menuju lokasi parkir adalah melalui jalan kampung yang sempit.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Keunikan dan Daya Tarik</h3>
+                            <ul>
+                                <li><strong>Bentuk Air Terjun yang Unik:</strong> Seperti yang telah disebutkan, air terjun ini mengalir melalui celah tebing batu yang sempit, menciptakan pemandangan yang sangat fotogenik.</li>
+                                <li><strong>Kolam Alami yang Jernih:</strong> Di bawah air terjun, terdapat kolam alami dengan air yang sangat jernih dan dingin. Pengunjung bisa berenang atau sekadar mencelupkan kaki untuk melepas lelah.</li>
+                                <li><strong>Suasana yang Asri dan Teduh:</strong> Dikelilingi oleh rindangnya pepohonan, kawasan ini sangat teduh dan sejuk, bahkan di siang hari.</li>
+                                <li><strong>Spot Foto yang Instagramable:</strong> Setiap sudut di Coban Canggu menawarkan latar belakang yang cantik untuk foto, mulai dari "gerbang" air terjun, jembatan kayu, hingga tebing-tebing berlumut.</li>
+                                <li><strong>Udara Pegunungan yang Segar:</strong> Lokasinya yang berada di kawasan Pacet membuat udara di sini terasa bersih dan segar.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Fasilitas di Sekitar</h3>
+                            <p>Fasilitas di Coban Canggu terus dikembangkan. Beberapa fasilitas yang tersedia antara lain:</p>
+                            <ul>
+                                <li><strong>Area Parkir:</strong> Tersedia area parkir untuk motor dan mobil.</li>
+                                <li><strong>Toilet:</strong> Tersedia kamar mandi/toilet umum.</li>
+                                <li><strong>Warung Makan:</strong> Terdapat beberapa warung (angkringan) yang menjual makanan dan minuman sederhana di area parkir dan dekat pintu masuk.</li>
+                                <li><strong>Gazebo dan Tempat Istirahat:</strong> Tersedia beberapa tempat duduk dan gazebo untuk bersantai.</li>
+                                <li><strong>Peralatan Berenang:</strong> Terkadang ada yang menyewakan pelampung atau ban untuk anak-anak.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Harga Tiket Masuk dan Jam Buka</h3>
+                            <ul>
+                                <li><strong>Harga Tiket Masuk:</strong> Rp 10.000 - Rp 15.000 per orang (harga dapat berubah tergantung kebijakan pengelola).</li>
+                                <li><strong>Tiket Parkir:</strong> Motor Rp 5.000, Mobil Rp 10.000.</li>
+                                <li><strong>Jam Operasional:</strong> Biasanya buka setiap hari dari pukul 08.00 WIB hingga 17.00 WIB. Disarankan datang pagi hari untuk menghindari keramaian dan menikmati suasana yang lebih tenang.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Tips untuk Pengunjung</h3>
+                            <ul>
+                                <li><strong>Gunakan Alas Kaki yang Nyaman:</strong> Perjalanan dari parkir menuju air terjun adalah turunan dan sedikit menanjak saat pulang. Gunakan sandal gunung atau sepatu yang nyaman dan tidak licin.</li>
+                                <li><strong>Bawa Pakaian Ganti:</strong> Karena Anda mungkin akan tergoda untuk berenang, jangan lupa membawa pakaian ganti dan handuk.</li>
+                                <li><strong>Bawa Air Mineral:</strong> Tetap terhidrasi selama perjalanan dan eksplorasi.</li>
+                                <li><strong>Jaga Kebersihan:</strong> Bawalah tas kecil untuk sampah pribadi Anda dan buanglah pada tempatnya. Mari jaga kelestarian keindahan Coban Canggu.</li>
+                                <li><strong>Hati-hati di Area Licin:</strong> Batuan di sekitar air terjun bisa sangat licin karena tertutup lumut. Berhati-hatilah saat berjalan.</li>
+                                <li><strong>Bawa Kamera:</strong> Jangan lewatkan untuk mengabadikan momen indah Anda di sini.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 4,
+                name: "Pantai Balekambang",
+                image: "https://drive.google.com/thumbnail?id=1ye4exw-DJLYzkDD2MAtnPz2TJna7NqBs&sz=w1000",
+                description: "Pantai dengan pasir putih dan tiga pulau kecil yang dihubungkan jembatan. Sering disebut 'Tanah Lot-nya Jawa Timur'.",
+                detail: {
+                    title: "Pantai Balekambang: Keindahan Pesisir Selatan Malang",
+                    image: "https://drive.google.com/thumbnail?id=1ye4exw-DJLYzkDD2MAtnPz2TJna7NqBs&sz=w1000",
+                    content: `
+                        <div class="modal-section">
+                            <p>Pantai Balekambang adalah sebuah pantai di pesisir selatan yang terletak di tepi Samudera Indonesia secara administratif masuk wilayah Dusun Sumber Jambe, Desa Srigonco, Kecamatan Bantur, Kabupaten Malang, Jawa Timur dan merupakan salah satu wisata di Kabupaten Malang sejak 1985 hingga kini. Pantai ini berjarak sekitar 65 km dari pusat Kota Malang dan dapat ditempuh dalam waktu 2-3 jam.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Gambaran Umum</h3>
+                            <p>Pantai Balekambang adalah objek wisata populer di Malang, Jawa Timur, yang terkenal dengan lanskapnya yang indah berupa pantai pasir putih dan karang di Kecamatan Bantur. Keunikannya terletak pada tiga pulau berjejer di tengah laut, di mana Pulau Ismoyo menjadi lokasi Pura Agung Amertha Jati yang dihubungkan oleh jembatan.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Lokasi dan Akses</h3>
+                            <p>Pantai Balekambang berada di Desa Srigonco, Kecamatan Bantur, Kabupaten Malang. Pantai ini berjarak sekitar 60 hingga 70 km dari Kota Malang, tepat di selatan kota. Akses ke lokasi cukup mudah, karena jalan yang sudah beraspal bisa dilalui kendaraan pribadi maupun bus pariwisata.</p>
+                            
+                            <h4>Akses Jalan :</h4>
+                            <ul>
+                                <li><strong>Jalur 1:</strong> Malang Kota - Kepanjen - Pagak - Bantur - Balekambang</li>
+                                <li><strong>Jalur 2:</strong> Terminal Arjosari - Pasar Gadang - Gondang legi - Bantur - Balekambang</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Keunikan dan Daya Tarik</h3>
+                            <p>Pantai Balekambang memiliki tiga pulau kecil di sebelah lepas pantai, yaitu:</p>
+                            <ul>
+                                <li><strong>Pulau Ismoyo</strong>, yang merupakan tempat berdirinya Pura Luhur Amertha Jati.</li>
+                                <li><strong>Pulau Anoman</strong> dan <strong>Pulau Wisanggeni</strong>, yang lebih kecil namun memberi tambahan keindahan pemandangan.</li>
+                            </ul>
+                            <p>Selain itu, terdapat jembatan beton yang panjangnya sekitar 100 meter, menghubungkan bibir pantai dengan Pulau Ismoyo. Jembatan ini menjadi simbol utama pantai ini. Pasir di pantai ini berwarna putih keemasan, dan ombak yang cukup besar khas pantai selatan Jawa. Tempat ini cocok untuk menikmati pemandangan, tetapi perlu berhati-hati jika ingin berenang.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Fasilitas Sekitar</h3>
+                            <p>Pantai Balekambang sudah dikelola cukup baik, dengan fasilitas seperti:</p>
+                            <ul>
+                                <li>Area parkir yang luas.</li>
+                                <li>Warung makan dan penginapan sederhana.</li>
+                                <li>Mushola dan toilet umum.</li>
+                                <li>Gazebo serta area bermain.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Harga Tiket Masuk dan Jam Buka</h3>
+                            <p>Tiket masuk Pantai Balekambang, Malang, adalah <strong>Rp20.000 per orang</strong>, dan ada biaya tambahan untuk parkir (Rp5.000 untuk motor, Rp10.000 untuk mobil, dan Rp15.000 untuk bus/truk). Pembayaran tiket dilakukan di loket utama dan sejak April 2024, tiket dan parkir menggunakan struk e-tiket.</p>
+                            <p>Pantai Balekambang buka 24 jam setiap hari, namun waktu terbaik untuk berkunjung adalah pagi atau sore hari untuk menikmati pemandangan secara maksimal. Disarankan untuk tidak berkunjung di atas pukul 21.00 WIB karena pertimbangan keamanan.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Tips Untuk Pengunjung</h3>
+                            <ul>
+                                <li>Datang pada pagi atau sore hari untuk menghindari panas terik matahari.</li>
+                                <li>Waktu terbaik secara umum adalah saat musim kemarau (sekitar April-September) saat cuaca lebih cerah.</li>
+                                <li>Bawa pakaian ganti dan peralatan mandi jika berencana menginap.</li>
+                                <li>Bawa bekal makanan dan minuman untuk menghemat.</li>
+                                <li>Bawa sunscreen, topi, atau kacamata hitam untuk melindungi kulit.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 5,
+                name: "Gunung Semeru",
+                image: "https://drive.google.com/thumbnail?id=1e5e6_1gVAbso_gjN7uIdd-7259q4s9ZU&sz=w1000",
+                description: "Gunung tertinggi di Pulau Jawa dengan puncak Mahameru. Perjalanan mendaki yang menantang dengan pemandangan spektakuler.",
+                detail: {
+                    title: "Gunung Semeru: Puncak Tertinggi Jawa dengan Segudang Keindahan",
+                    image: "https://drive.google.com/thumbnail?id=1e5e6_1gVAbso_gjN7uIdd-7259q4s9ZU&sz=w1000",
+                    content: `
+                        <div class="modal-section">
+                            <p>Semeru adalah salah satu gunung di Jawa Timur dengan puncak yang termasuk tertinggi di Jawa dengan banyak keindahan alam yang seperti serpihan surga yang turun ke dunia.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Gambaran Umum</h3>
+                            <p>Gunung Semeru merupakan salah satu gunung yang menjadi salah satu tujuan pendakian oleh warga lokal maupun manca negara dengan adanya padang savana, danau yang sangat memukau merupakan kawasan Taman Nasional Bromo Tengger Semeru (TNBTS) dengan ketinggian 3.676 mdpl.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Lokasi dan Akses</h3>
+                            <p><strong>Kabupaten:</strong> Malang dan Lumajang, Jawa Timur.</p>
+                            
+                            <h4>Rute Perjalanan:</h4>
+                            <p>Desa Ranu Pani 2.100 mdpl, Kecamatan Senduro, Kabupaten Lumajang. Ranu Pani adalah danau air tawar dan pos pertama pendakian. Rute yang diambil yang popular Jalur pendakian mulai dari Ranu Pani ® Ranu Kumbolo ® Oro-Oro Ombo ® Cemoro Kandang ® Kalimati ® Arcopodo ® Puncak Mahameru. Adapun beberapa basecamp yang ada di jalur pendakian seperti basecamp Kalimati pada ketinggian 2.672 mdpl.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Keunikan dan Daya Tarik</h3>
+                            <ul>
+                                <li><strong>Gunung Tertinggi di Jawa:</strong> Merupakan gunung tertinggi di Pulau Jawa dan tertinggi ketiga di Indonesia setelah Gunung Kerinci dan Gunung Rinjani.</li>
+                                <li><strong>Ranu Kumbolo:</strong> Sebuah danau indah di ketinggian 2.382 mdpl yang menjadi tempat istirahat favorit bagi para pendaki.</li>
+                                <li><strong>Oro-oro Ombo:</strong> Padang rumput atau sabana luas yang terkenal dengan hamparan bunga lavender yang indah (tergantung musim).</li>
+                                <li><strong>Pemandangan Alpin:</strong> Sepanjang jalur pendakian, terutama di ketinggian, terdapat vegetasi khas seperti bunga Edelweis (Anaphalis javanica) dan cemara gunung (Casuarina junghuhniana).</li>
+                                <li><strong>Fenomena Gendewo (Topi Gunung):</strong> Semeru sering "bertopi" awan yang disebut fenomena Altocumulus Lenticular, yang terbentuk saat udara bergerak melewati puncak.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Fasilitas di Sekitar</h3>
+                            <p>Fasilitas di sekitar Gunung Semeru terus dikembangkan. Beberapa fasilitas yang tersedia antara lain:</p>
+                            <ul>
+                                <li><strong>Toilet:</strong> Tersedia di beberapa pos pendakian.</li>
+                                <li><strong>Warung/Kios:</strong> Tersedia beberapa warung/kios untuk memenuhi kebutuhan mendaki.</li>
+                                <li><strong>Pemandu Gunung Lokal:</strong> Pengunjung dapat memanfaatkan jasa pemandu gunung lokal seharga sekitar Rp 600.000,- per 2 hari untuk satu kelompok 10 orang.</li>
+                                <li><strong>Porter barang:</strong> Jika membawa barang berat.</li>
+                                <li><strong>Beberapa basecamp:</strong> Yang bisa digunakan untuk beristirahat.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Harga Tiket Masuk dan Jam Buka</h3>
+                            <ul>
+                                <li><strong>Tiket Masuk (Hari Kerja):</strong> Rp 20.000,- (warga lokal) Rp 200.000,- (warga mancanegara)</li>
+                                <li><strong>Tiket Masuk (Hari Libur):</strong> Rp 30.000,- (warga lokal) Rp 200.000,- (warga mancanegara)</li>
+                                <li><strong>Tiket Hiking (Per Pendakian):</strong> Rp 20.000,- (warga lokal) Rp 20.000,- (warga mancanegara)</li>
+                                <li><strong>Tiket Camping (Per Hari):</strong> Rp 5.000,- (warga lokal) Rp 5.000,- (warga mancanegara)</li>
+                                <li><strong>Asuransi (Per Hari):</strong> Rp 4.000,- (warga lokal) Rp 5.000,- (warga mancanegara)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Tips untuk Pengunjung</h3>
+                            <ul>
+                                <li>Harus mempersiapkan fisik dan mental sebelum berangkat mendaki.</li>
+                                <li>Disarankan membawa persediaan yang cukup atau kalau bisa dilebihkan untuk berjaga-jaga.</li>
+                                <li>Bagi pengunjung harus membawa wadah untuk sampah agar tidak dibuang sembarangan dan mengotori gunung.</li>
+                                <li>Disarankan mendaki agak pagi untuk dapat melihat sunset di puncak Semeru.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 6,
+                name: "Pantai Pasir Putih Trenggalek",
+                image: "https://drive.google.com/thumbnail?id=1qiDT5Y8inQdjI1cnHvgZztp9CBt0wCjg&sz=w1000",
+                description: "Pantai dengan pasir putih dan formasi batuan karang yang unik. Destinasi favorit di Trenggalek.",
+                detail: {
+                    title: "Pantai Pasir Putih Trenggalek: Keindahan di Teluk Prigi",
+                    image: "https://drive.google.com/thumbnail?id=1qiDT5Y8inQdjI1cnHvgZztp9CBt0wCjg&sz=w1000",
+                    content: `
+                        <div class="modal-section">
+                            <p>Pantai Pasir Putih Trenggalek adalah salah satu destinasi wisata alam yang memukau di Kabupaten Trenggalek, Jawa Timur. Terletak di kawasan Teluk Prigi, pantai ini menawarkan ketenangan, udara sejuk, dan pemandangan biru laut, bukit tinggi nan hijau yang sangat memukau. Merupakan satu dari tiga pantai yang ada di teluk prigi menjadi salah satu pilihan destinasi wisata di Trenggalek.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Gambaran Umum</h3>
+                            <p>Pantai Pasir Putih merupakan salah satu pantai yang berada di teluk prigi, memiliki garis pantai yang panjang dan dekat dengan Pelabuhan tempat pelelangan ikan. Memiliki pasir putih bercampur dengan coklat dan ombak yang cenderung tenang, meski pada saat tertentu ombaknya biasanya akan naik lebih tinggi dari hari biasa contoh saat gerhana bulan.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Lokasi dan Akses</h3>
+                            <p><strong>Desa:</strong> Tasikmadu</p>
+                            <p><strong>Kecamatan:</strong> Watulimo</p>
+                            <p><strong>Kabupaten:</strong> Trenggalek, Jawa Timur</p>
+                            
+                            <h4>Rute Perjalanan:</h4>
+                            <p>Dari Kota Trenggalek menuju Pantai Pasir Putih memerlukan waktu sekitar satu jam sampai satu jam setengah. Untuk mencapai Pantai ini bisa lewat jalur Trenggalek-Tulungagung kemudian menuju Watulimo banyak penanda yang menunjukan arah menuju Pantai.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Keunikan dan Daya Tarik</h3>
+                            <ul>
+                                <li><strong>Memiliki pasir lembut dengan warna putih dengan campuran sedikit coklat.</strong></li>
+                                <li><strong>Memiliki ombak yang cenderung tenang tetapi kadang ombak tinggi.</strong></li>
+                                <li><strong>Dekat dengan Pantai Prigi dan Pantai Mutiara.</strong></li>
+                                <li><strong>Memiliki air yang cenderung biru jernih karena merupakan bagian dari Samudra Hindia.</strong></li>
+                                <li><strong>Memiliki pemandangan bukit-bukit hijau disekitarnya.</strong></li>
+                                <li><strong>Menghadap langsung ke Samudra Hindia dikarenakan sejajar dengan mulut dari teluk prigi.</strong></li>
+                                <li><strong>Dekat dengan Pelabuhan dan Lelang ikan.</strong></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Fasilitas di Sekitar</h3>
+                            <p>Fasilitas di Pantai Pasir Putih Trenggalek terus dikembangkan. Beberapa fasilitas yang tersedia antara lain:</p>
+                            <ul>
+                                <li><strong>Area Parkir:</strong> Tersedia area parkir untuk motor dan mobil.</li>
+                                <li><strong>Toilet:</strong> Tersedia kamar mandi/toilet umum.</li>
+                                <li><strong>Warung Makan:</strong> Terdapat beberapa warung (angkringan) yang menjual makanan dan minuman sederhana di area parkir dan dekat pintu masuk.</li>
+                                <li><strong>Gazebo dan Tempat Istirahat:</strong> Tersedia beberapa tempat duduk dan gazebo untuk bersantai.</li>
+                                <li><strong>Peralatan Berenang:</strong> Terkadang ada yang menyewakan pelampung atau ban untuk anak-anak.</li>
+                                <li><strong>Wahana bermain air seperti snorkeling, banana boat, atau pengalaman naik perahu menuju tengah teluk.</strong></li>
+                                <li><strong>Area taman yang ada di area dekat dengan pantai.</strong></li>
+                                <li><strong>Pelabuhan seperti yang disebutkan diatas.</strong></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Harga Tiket Masuk dan Jam Buka</h3>
+                            <ul>
+                                <li><strong>Harga Tiket Masuk:</strong> Rp 5.000,- per orang untuk hari biasa dan Rp 7.500,- per orang untuk hari libur nasional.</li>
+                                <li><strong>Tiket Parkir:</strong> Motor Rp 2.000,- Mobil Rp 5.000,-</li>
+                                <li><strong>Jam Operasional:</strong> Biasanya buka setiap hari dari pukul 07.00 WIB hingga sore atau malam hari tergantung pada tingkat pengunjung.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Tips untuk Pengunjung</h3>
+                            <ul>
+                                <li><strong>Bawa Pakaian Ganti:</strong> Karena Anda mungkin akan tergoda untuk berenang, jangan lupa membawa pakaian ganti dan handuk.</li>
+                                <li><strong>Bawa makanan dan minuman sendiri:</strong> Dikarenakan harga di tempat sedikit mahal.</li>
+                                <li><strong>Jaga Kebersihan:</strong> Bawalah tas kecil untuk sampah pribadi Anda dan buanglah pada tempatnya. Mari jaga kelestarian keindahan Pantai Pasir Putih.</li>
+                                <li><strong>Bawa Kamera:</strong> Jangan lewatkan untuk mengabadikan momen indah Anda di sini.</li>
+                                <li><strong>Bawa tenda atau tikar:</strong> Untuk digunakan bersantai di tepi garis pantai.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 7,
+                name: "Coban Rondo",
+                image: "https://drive.google.com/file/d/1iwvV3ysbE8w7bgCsQfeec39qwCOvkSxb/view?usp=sharing",
+                description: "Air terjun mempesona di lereng Gunung Panderman dengan ketinggian 84 meter, dikelilingi suasana sejuk dan hijau.",
+                detail: {
+                    title: "Coban Rondo: Air Terjun Mempesona di Lereng Gunung Panderman",
+                    image: "https://drive.google.com/file/d/1iwvV3ysbE8w7bgCsQfeec39qwCOvkSxb/view?usp=sharing",
+                    content: `
+                        <div class="modal-section">
+                            <p>Coban Rondo adalah air terjun yang mempesona yang terletak di lereng Gunung Panderman, Kabupaten Malang. Dengan ketinggian sekitar 84 meter, air terjun ini menawarkan suasana sejuk dan hijau yang cocok untuk melepas penat. Namanya yang berarti "Air Terjun Janda" menyimpan legenda cinta yang tragis, menambah daya tarik mistis bagi pengunjung.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Mengapa Harus Mengunjungi Coban Rondo?</h3>
+                            <ul>
+                                <li><strong>Akses yang Mudah dan Ramah Keluarga:</strong> Jaraknya yang tidak jauh dari Kota Malang dan jalur pendakian yang relatif landai membuatnya cocok untuk semua usia, termasuk keluarga dengan anak-anak.</li>
+                                <li><strong>Keindahan Air Terjun yang Memukau:</strong> Menyaksikan air jernih jatuh bebas dari ketinggian membentuk tirai air yang dikelilingi oleh tebing dan hutan hijau.</li>
+                                <li><strong>Kolam Renang dan Taman Bermain:</strong> Area wisata dilengkapi dengan fasilitas seperti kolam renang, taman bermain anak, dan area berkemah, sehingga sangat ideal untuk rekreasi panjang.</li>
+                                <li><strong>Spot Foto yang Estetik:</strong> Banyak sudut menarik, seperti jembatan, gazebo, dan tentunya latar langsung air terjun yang instagramable.</li>
+                                <li><strong>Merasakan Legenda:</strong> Mengunjungi tempat yang sarat dengan cerita rakyat setempat tentang kesetiaan dan pengorbanan.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Informasi Penting untuk Perencanaan Perjalanan</h3>
+                            <h4>Lokasi</h4>
+                            <p>Desa Pandesari, Kecamatan Pujon, Kabupaten Malang, Jawa Timur.</p>
+                            
+                            <h4>Akses Menuju Coban Rondo</h4>
+                            <ul>
+                                <li><strong>Kota Penghubung:</strong> Kota Malang.</li>
+                                <li><strong>Dari Kota Malang:</strong> Perjalanan darat menuju Pujon memakan waktu sekitar 1 - 1.5 jam. Jalanan berkelok-kelok namun beraspal baik.</li>
+                            </ul>
+                            
+                            <h4>Aktivitas & Destinasi Utama</h4>
+                            <ul>
+                                <li><strong>Berfoto di Depan Air Terjun:</strong> Aktivitas utama untuk mengabadikan keindahan Coban Rondo.</li>
+                                <li><strong>Berkemah:</strong> Tersedia camping ground yang nyaman.</li>
+                                <li><strong>Berenang di Kolam:</strong> Alternatif berenang bagi yang tidak ingin basah-basahan di air terjun.</li>
+                                <li><strong>Menikmati Kuliner:</strong> Tersedia warung-warung makan yang menjajakan makanan khas Malang.</li>
+                            </ul>
+                            
+                            <h4>Tips Berkunjung</h4>
+                            <ul>
+                                <li><strong>Waktu Terbaik:</strong> Weekday untuk menghindari keramaian, atau pagi hari di weekend.</li>
+                                <li><strong>Bawa Perlengkapan:</strong> Bawa pakaian ganti, handuk, dan kamera.</li>
+                                <li><strong>Kondisi Jalan:</strong> Hati-hati saat berkendara karena jalur menuju Pujon berkelok dan sering berkabut.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 8,
+                name: "Gunung Kelud",
+                image: "https://drive.google.com/file/d/1JXNWspaVkQ10TVyoIu7eFBOqNbJ3cNA9/view?usp=drive_link",
+                description: "Gunung api aktif dengan kubah lava baru dan lanskap vulkanik dramatis pasca letusan 2014, bagaikan permukaan bulan.",
+                detail: {
+                    title: "Gunung Kelud: Dramanya Kekuatan Vulkanik Bumi",
+                    image: "https://drive.google.com/file/d/1JXNWspaVkQ10TVyoIu7eFBOqNbJ3cNA9/view?usp=drive_link",
+                    content: `
+                        <div class="modal-section">
+                            <p>Gunung Kelud adalah salah satu gunung api paling aktif dan bersejarah di Jawa Timur. Setelah letusan spektakuler pada tahun 2014, kawasan ini berubah menjadi destinasi wisata yang unik dengan pemandangan kubah lava baru dan lanskap vulkanik yang dramatis, bagaikan permukaan bulan.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Mengapa Harus Mengunjungi Gunung Kelud?</h3>
+                            <ul>
+                                <li><strong>Kubah Lava Raksasa:</strong> Menyaksikan langsung kubah lava berwarna abu-abu kehitaman yang membendang danau kawah, sebuah fenomena alam yang langka dan powerful.</li>
+                                <li><strong>Jeep Lava Tour:</strong> Merasakan sensasi petualangan dengan naik jeep melintasi kawasan bekas lahar panas yang kini menjadi hamparan batuan dan pasir yang luas.</li>
+                                <li><strong>Pemandangan dari Puncak:</strong> Dari puncak atau tepian kawah, Anda bisa melihat pemandangan 360 derajat yang menakjubkan, termasuk danau kawah berwarna hijau toska (tergantung musim).</li>
+                                <li><strong>Museum Gunung Api Kelud:</strong> Belajar tentang sejarah letusan Gunung Kelud yang dahsyat melalui dokumentasi foto dan replika di museum yang terletak di dekat kawasan wisata.</li>
+                                <li><strong>Lanskap "Seperti di Planet Lain":</strong> Merasakan pengalaman berada di tempat yang benar-benar berbeda dengan pemandangan vulkanik yang gersang namun memesona.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Informasi Penting untuk Perencanaan Perjalanan</h3>
+                            <h4>Lokasi</h4>
+                            <p>Berada di perbatasan Kabupaten Kediri, Blitar, dan Malang, Jawa Timur. Pintu masuk wisata utama melalui Kediri.</p>
+                            
+                            <h4>Akses Menuju Gunung Kelud</h4>
+                            <ul>
+                                <li><strong>Kota Penghubung:</strong> Kota Kediri.</li>
+                                <li><strong>Dari Kediri:</strong> Perjalanan menuju basecamp Margomulyo di lereng Gunung Kelud memakan waktu sekitar 1.5 jam.</li>
+                                <li><strong>Transportasi Terakhir:</strong> Wajib menggunakan jeep 4x4 yang disewa dari basecamp untuk menuju area kubah lava dan kawah.</li>
+                            </ul>
+                            
+                            <h4>Aktivitas & Destinasi Utama</h4>
+                            <ul>
+                                <li><strong>Jeep Adventure:</strong> Melintasi kawasan bekas lahar dan berfoto dengan latar lanskap vulkanik.</li>
+                                <li><strong>Titik View Kawah:</strong> Beberapa titik seperti Savana Domas dan tepian kawah menawarkan pemandangan terbaik.</li>
+                                <li><strong>Museum Gunung Api Kelud:</strong> Tempat yang informatif untuk memahami kekuatan alam Kelud.</li>
+                            </ul>
+                            
+                            <h4>Tips Berkunjung</h4>
+                            <ul>
+                                <li><strong>Waktu Terbaik:</strong> Musim kemarau. Hindari musim hujan karena jalur jeep bisa licin dan berbahaya.</li>
+                                <li><strong>Perlengkapan Wajib:</strong> Masker (sangat berdebu), kacamata, jaket, topi, dan sunblock.</li>
+                                <li><strong>Panduan:</strong> Disarankan untuk menggunakan jasa pemandu jeep yang berpengalaman.</li>
+                                <li><strong>Kondisi Fisik:</strong> Medan yang berbatu dan berdebu membutuhkan stamina yang cukup.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 9,
+                name: "Teluk Bidadari",
+                image: "https://drive.google.com/file/d/1_wyFhc0QVrjbNvFXUEoULP9SUWZ5BEzo/view?usp=drive_link",
+                description: "Primadona Taman Nasional Karimunjawa dengan pantai pasir putih halus dan air laut biru kehijauan yang jernih.",
+                detail: {
+                    title: "Teluk Bidadari: Keindahan Surgawi di Karimunjawa",
+                    image: "https://drive.google.com/file/d/1_wyFhc0QVrjbNvFXUEoULP9SUWZ5BEzo/view?usp=drive_link",
+                    content: `
+                        <div class="modal-section">
+                            <p>Teluk Bidadari adalah salah satu primadona di Taman Nasional Karimunjawa yang menawarkan pantai dengan pasir putih halus dan air laut biru kehijauan yang jernih. Namanya yang berarti "Teluk Bidadari" sangat cocok dengan keindahan surgawi yang ditawarkannya.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Mengapa Harus Mengunjungi Teluk Bidadari?</h3>
+                            <ul>
+                                <li><strong>Snorkeling di Taman Bidadari:</strong> Menikmati keindahan terumbu karang yang masih terjaga dan beraneka warna ikan hias hanya dengan berenang beberapa meter dari pantai.</li>
+                                <li><strong>Pasir Putih dan Air Biru Jernih:</strong> Pantai yang sangat fotogenik dengan perpaduan warna pasir, air, dan langit yang sempurna.</li>
+                                <li><strong>Pohon Cemara Laut yang Teduh:</strong> Tumbuhan khas Karimunjawa ini memberikan suasana yang sangat santai dan teduh untuk bersantai di pinggir pantai.</li>
+                                <li><strong>Spot Instagramable:</strong> Dari ayunan pantai, perahu nelayan, hingga dermaga kayu, setiap sudutnya sangat instagramable.</li>
+                                <li><strong>Pusat Aktivitas Wisata:</strong> Sebagai salah satu pulau utama yang dikunjungi, teluk ini sering menjadi titik kumpul dan titik awal untuk menyewa perahu atau menikmati berbagai aktivitas air.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Informasi Penting untuk Perencanaan Perjalanan</h3>
+                            <h4>Lokasi</h4>
+                            <p>Pulau Karimunjawa, Kabupaten Jepara, Jawa Tengah.</p>
+                            
+                            <h4>Akses Menuju Teluk Bidadari</h4>
+                            <ul>
+                                <li><strong>Kota Penghubung:</strong> Jepara atau Semarang.</li>
+                                <li><strong>Dari Jepara/Semarang:</strong> Naik kapal feri atau speedboat menuju Pulau Karimunjawa (3-5 jam). Teluk Bidadari dapat dicapai dengan perahu kecil dari dermaga utama.</li>
+                            </ul>
+                            
+                            <h4>Aktivitas & Destinasi Utama</h4>
+                            <ul>
+                                <li><strong>Snorkeling dan Berenang:</strong> Aktivitas utama di sini.</li>
+                                <li><strong>Bersantai di Pantai:</strong> Menikmati suasana pantai tropis yang tenang.</li>
+                                <li><strong>Foto di Ayunan Pantai & Dermaga:</strong> Ikon dari Teluk Bidadari.</li>
+                                <li><strong>Menyewa Perahu:</strong> Untuk island hopping ke pulau-pulau sekitar.</li>
+                            </ul>
+                            
+                            <h4>Tips Berkunjung</h4>
+                            <ul>
+                                <li><strong>Bawa Perlengkapan Snorkeling:</strong> Bawa sendiri untuk menghemat biaya sewa.</li>
+                                <li><strong>Sunblock dan Topi:</strong> Matahari di Karimunjawa sangat terik.</li>
+                                <li><strong>Jaga Kebersihan:</strong> Bawa pulang sampah Anda untuk menjaga keasrian pulau.</li>
+                                <li><strong>Pesan Penginapan Lebih Awal:</strong> Terutama di musim liburan.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 10,
+                name: "Pulau Sempu",
+                image: "https://drive.google.com/file/d/1AugYQeJ0Oj-t98rFN252K9dbDI_efuHd/view?usp=drive_link",
+                description: "Cagar alam dengan danau air asin tersembunyi Segara Anakan, surga tersembunyi di selatan Malang yang masih sangat alami.",
+                detail: {
+                    title: "Pulau Sempu: Petualangan Menuju Surga Tersembunyi",
+                    image: "https://drive.google.com/file/d/1AugYQeJ0Oj-t98rFN252K9dbDI_efuHd/view?usp=drive_link",
+                    content: `
+                        <div class="modal-section">
+                            <p>Pulau Sempu adalah cagar alam yang masih sangat alami dan dilindungi di selatan Malang. Pulau tak berpenghuni ini menyimpan sebuah danau air asin yang tersembunyi bernama Segara Anakan, yang dianggap sebagai "hidden paradise" sejati.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Mengapa Harus Mengunjungi Pulau Sempu?</h3>
+                            <ul>
+                                <li><strong>Segara Anakan, Laguna Tersembunyi:</strong> Sebuah danau air asin yang dikelilingi tebing batu dengan satu celah sempat yang terhubung ke Samudera Hindia. Pemandangannya sangat dramatis dan memukau.</li>
+                                <li><strong>Petualangan Trekking Sejati:</strong> Untuk mencapai Segara Anakan, Anda harus trekking melalui hutan alami dengan medan yang menantang selama sekitar 2-3 jam.</li>
+                                <li><strong>Kealamian yang Masih Perawan:</strong> Sebagai cagar alam, Pulau Sempu bebas dari pembangunan komersial. Anda akan merasakan suasana pantai dan hutan yang masih asli.</li>
+                                <li><strong>Berkemah di Surga Tersembunyi:</strong> Bermalam di tepi Segara Anakan di bawah bintang-bintang adalah pengalaman yang tak terlupakan.</li>
+                                <li><strong>Suara Ombak dan Kicau Burung:</strong> Benar-benar terputus dari keramaian dan merasakan kedamaian sesungguhnya.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Informasi Penting untuk Perencanaan Perjalanan</h3>
+                            <h4>Lokasi</h4>
+                            <p>Di perairan selatan Kabupaten Malang, Jawa Timur, dekat Pantai Sendang Biru.</p>
+                            
+                            <h4>Akses Menuju Pulau Sempu</h4>
+                            <ul>
+                                <li><strong>Kota Penghubung:</strong> Kota Malang.</li>
+                                <li><strong>Dari Malang:</strong> Perjalanan darat menuju Pantai Sendang Biru memakan waktu sekitar 2.5 - 3 jam.</li>
+                                <li><strong>Transportasi Terakhir:</strong> Menyewa perahu nelayan dari Pantai Sendang Biru untuk menyeberang ke Pulau Sempu (sekitar 30 menit).</li>
+                            </ul>
+                            
+                            <h4>Aktivitas & Destinasi Utama</h4>
+                            <ul>
+                                <li><strong>Trekking Menuju Segara Anakan:</strong> Aktivitas inti dengan medan berbatu, akar pohon, dan sedikit memanjat.</li>
+                                <li><strong>Berenang di Laguna:</strong> Air Segara Anakan yang tenang cocok untuk berenang.</li>
+                                <li><strong>Berkemah:</strong> Tersedia area camping ground di sekitar Segara Anakan.</li>
+                                <li><strong>Menikmati Sunset:</strong> Dari bibir pantai Pulau Sempu.</li>
+                            </ul>
+                            
+                            <h4>Tips Berkunjung</h4>
+                            <ul>
+                                <li><strong>WAJIB Izin:</strong> Anda harus mengurus surat izin masuk ke BKSDA Malang terlebih dahulu.</li>
+                                <li><strong>Panduan Lokal:</strong> Wajib menggunakan pemandu untuk keselamatan dan tidak tersesat.</li>
+                                <li><strong>Fisik yang Prima:</strong> Trekking menuju Segara Anakan sangat menantang.</li>
+                                <li><strong>Bawa Logistik Sendiri:</strong> Bawa air minum, makanan, dan tenda yang cukup karena tidak ada fasilitas di dalam pulau.</li>
+                                <li><strong>Waspada Ombak Besar:</strong> Hindari berkunjung saat musim penghujan karena ombak di selatan bisa sangat berbahaya.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 11,
+                name: "Air Terjun Tumpak Sewu",
+                image: "https://drive.google.com/file/d/1i3glupVm_jhpIcEwig3xIQCttfAN7wsQ/view?usp=drive_link",
+                description: "Niagara-nya Indonesia dengan bentangan lebar ratusan jalur air yang jatuh dari tebing berbatu, pemandangan dramatis di perbatasan Lumajang-Malang.",
+                detail: {
+                    title: "Air Terjun Tumpak Sewu: Niagara-nya Indonesia",
+                    image: "https://drive.google.com/file/d/1i3glupVm_jhpIcEwig3xIQCttfAN7wsQ/view?usp=drive_link",
+                    content: `
+                        <div class="modal-section">
+                            <p>Air Terjun Tumpak Sewu, yang berarti "Seribu Air Terjun", sering dijuluki sebagai "Niagara-nya Indonesia". Terletak di perbatasan Lumajang dan Malang, air terjun ini memiliki bentuk yang unik berupa bentangan lebar dengan ratusan jalur air yang jatuh dari tebing berbatu, menciptakan pemandangan yang sangat dramatis.</p>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Mengapa Harus Mengunjungi Air Terjun Tumpak Sewu?</h3>
+                            <ul>
+                                <li><strong>Pesona "Seribu Air Terjun":</strong> Menyaksikan langsung bentangan air terjun yang lebar dengan puluhan aliran air yang paralel, sebuah pemandangan yang sangat langka dan powerful.</li>
+                                <li><strong>Viewpoint dari Atas dan Bawah:</strong> Anda bisa melihatnya dari tebing seberang (viewpoint atas) untuk melihat keseluruhan, atau trekking ke dasar jurang (viewpoint bawah) untuk merasakan kekuatannya dari dekat.</li>
+                                <li><strong>Lembah Hijau yang Subur:</strong> Air terjun ini dikelilingi oleh hutan hijau yang rimbun, menciptakan kontras warna yang indah antara air putih, batu hitam, dan dedaunan hijau.</li>
+                                <li><strong>Spot Foto yang Epik:</strong> Baik dari atas maupun bawah, setiap angle menghasilkan foto yang spektakuler dan penuh dimensi.</li>
+                                <li><strong>Kekuatan Alam yang Menggetarkan:</strong> Suara gemuruh air yang jatuh dari ketinggian dan percikan kabutnya akan membuat Anda merasa kecil di hadapan alam.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <h3>Informasi Penting untuk Perencanaan Perjalanan</h3>
+                            <h4>Lokasi</h4>
+                            <p>Desa Sidomulyo, Kecamatan Pronojiwo, Kabupaten Lumajang, Jawa Timur (perbatasan dengan Malang).</p>
+                            
+                            <h4>Akses Menuju Tumpak Sewu</h4>
+                            <ul>
+                                <li><strong>Kota Penghubung:</strong> Kota Malang atau Lumajang.</li>
+                                <li><strong>Dari Malang:</strong> Perjalanan darat menuju lokasi memakan waktu sekitar 2.5 - 3 jam.</li>
+                            </ul>
+                            
+                            <h4>Aktivitas & Destinasi Utama</h4>
+                            <ul>
+                                <li><strong>Viewpoint Atas:</strong> Area yang mudah dijangkau untuk melihat pemandangan keseluruhan Tumpak Sewu.</li>
+                                <li><strong>Trekking ke Viewpoint Bawah:</strong> Turun melalui tangga dan jalur yang curam untuk sampai ke dasar dan melihat air terjun dari dekat.</li>
+                                <li><strong>Goa Tetes:</strong> Sebuah gua kecil di balik curtain air terjun.</li>
+                            </ul>
+                            
+                            <h4>Tips Berkunjung</h4>
+                            <ul>
+                                <li><strong>Waktu Terbaik:</strong> Pagi hari untuk menghindari kabut dan mendapatkan cahaya terbaik untuk foto.</li>
+                                <li><strong>Pakaian & Alas Kaki:</strong> Gunakan sepatu trekking atau sandal gunung yang memiliki grip baik karena jalannya licin.</li>
+                                <li><strong>Bawa Jas Hujan atau Pakaian Ganti:</strong> Anda akan basah kuyup oleh percikan air.</li>
+                                <li><strong>Hati-hati di Jalur Turun:</strong> Pegangan tangga dan jalur setapak dengan baik, terutama saat musim hujan.</li>
+                                <li><strong>Patuhi Rambu Peringatan:</strong> Jangan melangkah ke area yang dilarang karena arusnya bisa sangat kuat.</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            },
+            {
+                id: 12,
+                name: "Gunung Arjuno",
+                image: "https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Gunung dengan jalur pendakian yang menantang dan pemandangan alam yang masih asri di kawasan Malang."
+            },
+            {
+                id: 13,
+                name: "Pantai Watu Ulo",
+                image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Pantai dengan formasi batu karang menyerupai ular. Destinasi wisata alam yang menarik di Jember."
+            },
+            {
+                id: 14,
+                name: "Kawah Putih",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Kawah dengan danau berwarna putih kehijauan yang eksotis. Terletak di kawasan Ciwidey, Jawa Barat."
+            },
+            {
+                id: 15,
+                name: "Goa Maharani",
+                image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Goa dengan stalaktit dan stalagmit yang indah. Terletak di Lamongan, menawarkan pengalaman bawah tanah yang menakjubkan."
+            },
+            {
+                id: 16,
+                name: "Bukit Teletubbies",
+                image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+                description: "Bukit dengan kontur tanah yang unik menyerupai pemandangan di serial Teletubbies. Terletak di kawasan Bromo."
+            }
+        ];
+
+        // Data video untuk carousel
+        const videos = [
+            {
+                id: 1,
+                title: "Keindahan Alam Jawa Timur",
+                src: "https://drive.google.com/file/d/1F3h7rrKDe5BxhUB2F9SdyjBaujs_e3Os/view?usp=drive_link",
+                caption: "Video dokumenter keindahan alam Jawa Timur - Sumber: YouTube"
+            },
+            {
+                id: 2,
+                title: "Air Terjun Coban Glotak Malang",
+                src: "https://drive.google.com/file/d/1Al2okExYBefi-tElTQWzMS5_oJdrv88g/view?usp=drive_link",
+                caption: "Dokumenter Perjalanan Coban Glotak - Sumber: YouTube"
+            },
+            {
+                id: 3,
+                title: "Gunung Bromo",
+                src: "https://drive.google.com/file/d/11ShQ_da9pGlYqFyh-jiwKh56gzQ4uB0x/view?usp=drive_link",
+                caption: "Pendakian ke puncak - Sumber: YouTube"
+            },
+            {
+                id: 4,
+                title: "Pantai Balekambang - Tanah Lot-nya Jawa Timur",
+                src: "https://drive.google.com/file/d/1gQzpV2kic1vSFxLGqXc_7-tgE7l6YQrs/view?usp=drive_link",
+                caption: "Keindahan pantai dengan tiga pulau kecil - Sumber: YouTube"
+            }
+        ];
+
+        // Konfigurasi pagination
+        const destinationsPerPage = 6;
+        let currentPage = 1;
+        let totalPages = Math.ceil(destinations.length / destinationsPerPage);
+
+        // Konfigurasi video carousel
+        let currentVideoIndex = 0;
+
+        // Variables for swipe functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const swipeThreshold = 50; // Minimum distance for a swipe
+
+        // Fungsi untuk menampilkan destinasi berdasarkan halaman
+        function displayDestinations(page) {
+            const container = document.getElementById('destinations-container');
+            container.innerHTML = '';
+            
+            const startIndex = (page - 1) * destinationsPerPage;
+            const endIndex = startIndex + destinationsPerPage;
+            const paginatedDestinations = destinations.slice(startIndex, endIndex);
+            
+            paginatedDestinations.forEach(destination => {
+                const card = document.createElement('div');
+                card.className = 'destinasi-card';
+                
+                // Buat elemen gambar dengan fallback
+                const imgElement = document.createElement('img');
+                imgElement.src = destination.image;
+                imgElement.alt = destination.name;
+                imgElement.loading = 'lazy';
+                
+                // Tambahkan event handler untuk error gambar
+                imgElement.onerror = function() {
+                    console.log(`Gambar untuk ${destination.name} gagal dimuat, menggunakan fallback`);
+                    this.src = 'https://images.unsplash.com/photo-1578321272179-b2b1d152a48f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';
+                };
+                
+                // Tambahkan event handler untuk load gambar
+                imgElement.onload = function() {
+                    console.log(`Gambar untuk ${destination.name} berhasil dimuat`);
+                };
+                
+                card.innerHTML = `
+                    <div class="card-img">
+                        <!-- Gambar akan dimuat melalui JavaScript -->
+                    </div>
+                    <div class="card-content">
+                        <h3>${destination.name}</h3>
+                        <p>${destination.description}</p>
+                        <a href="#" class="btn btn-detail" data-id="${destination.id}">Selengkapnya</a>
+                    </div>
+                `;
+                
+                // Tambahkan gambar ke card
+                card.querySelector('.card-img').appendChild(imgElement);
+                container.appendChild(card);
+            });
+            
+            // Tambahkan event listener untuk tombol detail
+            document.querySelectorAll('.btn-detail').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const destinationId = parseInt(this.getAttribute('data-id'));
+                    showDestinationDetail(destinationId);
+                });
+            });
+            
+            // Trigger animasi fade-in dengan scroll observer
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.destinasi-card');
+                cards.forEach(card => {
+                    scrollObserver.observe(card);
+                });
+            }, 100);
+        }
+
+        // Fungsi untuk menampilkan detail destinasi dalam modal
+        function showDestinationDetail(destinationId) {
+            const destination = destinations.find(dest => dest.id === destinationId);
+            if (!destination) return;
+            
+            const modal = document.getElementById('destinationModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalTitle.textContent = destination.name;
+            
+            // Jika destinasi memiliki detail lengkap, tampilkan
+            if (destination.detail) {
+                modalBody.innerHTML = `
+                    <div class="modal-image">
+                        <img src="${destination.detail.image}" alt="${destination.name}" onerror="this.src='https://images.unsplash.com/photo-1578321272179-b2b1d152a48f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
+                    </div>
+                    ${destination.detail.content}
+                `;
+            } else {
+                // Jika tidak ada detail lengkap, tampilkan informasi dasar
+                modalBody.innerHTML = `
+                    <div class="modal-image">
+                        <img src="${destination.image}" alt="${destination.name}" onerror="this.src='https://images.unsplash.com/photo-1578321272179-b2b1d152a48f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'">
+                    </div>
+                    <div class="modal-section">
+                        <p>${destination.description}</p>
+                        <p>Informasi detail untuk ${destination.name} sedang dalam pengembangan. Silakan hubungi kami untuk informasi lebih lanjut.</p>
+                    </div>
+                `;
+            }
+            
+            modal.style.display = 'block';
+            
+            // Scroll ke atas modal
+            modal.scrollTop = 0;
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            const modal = document.getElementById('destinationModal');
+            modal.style.display = 'none';
+        }
+
+        // Fungsi untuk membuat pagination dengan tombol navigasi
+        function setupPagination() {
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';
+            
+            // Tombol Previous
+            const prevButton = document.createElement('button');
+            prevButton.className = 'nav-btn';
+            prevButton.id = 'prevBtn';
+            prevButton.textContent = 'Sebelumnya';
+            prevButton.disabled = currentPage === 1;
+            prevButton.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage > 1) {
+                    currentPage--;
+                    navigateToPage(currentPage);
+                }
+            };
+            
+            paginationContainer.appendChild(prevButton);
+            
+            // Info halaman saat ini
+            const pageInfo = document.createElement('span');
+            pageInfo.className = 'pagination-info';
+            pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
+            paginationContainer.appendChild(pageInfo);
+            
+            // Tombol Next
+            const nextButton = document.createElement('button');
+            nextButton.className = 'nav-btn';
+            nextButton.id = 'nextBtn';
+            nextButton.textContent = 'Selanjutnya';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.onclick = (e) => {
+                e.preventDefault();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    navigateToPage(currentPage);
+                }
+            };
+            
+            paginationContainer.appendChild(nextButton);
+            
+            // Observe pagination untuk efek fade in
+            scrollObserver.observe(paginationContainer);
+        }
+
+        // Fungsi untuk navigasi ke halaman tertentu
+        function navigateToPage(page) {
+            currentPage = page;
+            displayDestinations(currentPage);
+            setupPagination();
+            
+            // Scroll ke bagian destinasi
+            window.scrollTo({
+                top: document.getElementById('destinasi').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+
+        // Fungsi untuk update status tombol navigasi
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (prevBtn) {
+                prevBtn.disabled = currentPage === 1;
+            }
+            
+            if (nextBtn) {
+                nextBtn.disabled = currentPage === totalPages;
+            }
+        }
+
+        // Fungsi untuk menampilkan alert
+        function showAlert(message, type) {
+            const alertElement = document.getElementById('alert-message');
+            alertElement.textContent = message;
+            alertElement.className = `alert alert-${type}`;
+            alertElement.style.display = 'block';
+            
+            // Sembunyikan alert setelah 5 detik
+            setTimeout(() => {
+                alertElement.style.display = 'none';
+            }, 5000);
+        }
+
+        // Fungsi untuk mengirim email
+        function sendEmail(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            
+            // Tampilkan loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Mengirim...';
+            
+            // Ambil data dari form
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Kirim email menggunakan EmailJS
+            emailjs.send('service_48ronau', 'template_lmkywls', formData)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showAlert('Pesan berhasil dikirim! Kami akan membalasnya segera.', 'success');
+                    document.getElementById('contactForm').reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    showAlert('Maaf, terjadi kesalahan. Silakan coba lagi nanti.', 'error');
+                })
+                .finally(() => {
+                    // Kembalikan tombol ke state semula
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
+        }
+
+        // Fungsi untuk menangani swipe
+        function handleSwipe() {
+            const swipeDistance = touchEndX - touchStartX;
+            
+            // Swipe kiri (next page)
+            if (swipeDistance < -swipeThreshold && currentPage < totalPages) {
+                currentPage++;
+                navigateToPage(currentPage);
+            }
+            // Swipe kanan (previous page)
+            else if (swipeDistance > swipeThreshold && currentPage > 1) {
+                currentPage--;
+                navigateToPage(currentPage);
+            }
+        }
+
+        // Fungsi untuk setup video carousel
+        function setupVideoCarousel() {
+            const carouselTrack = document.getElementById('carouselTrack');
+            const indicatorsContainer = document.getElementById('carouselIndicators');
+            
+            // Generate video slides
+            videos.forEach((video, index) => {
+                const slide = document.createElement('div');
+                slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <div class="video-wrapper">
+                        <iframe src="${video.src}" 
+                                title="${video.title}" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                        <div class="video-fallback" style="display: none;">
+                            <p>Video tidak dapat dimuat. Silakan kunjungi <a href="${video.src.replace('embed/', 'watch?v=')}" target="_blank">tautan ini</a> untuk menonton video.</p>
+                        </div>
+                    </div>
+                    <p class="video-caption">${video.caption}</p>
+                `;
+                carouselTrack.appendChild(slide);
+                
+                // Generate indicator
+                const indicator = document.createElement('button');
+                indicator.className = `carousel-indicator ${index === 0 ? 'active' : ''}`;
+                indicator.addEventListener('click', () => {
+                    goToVideo(index);
+                });
+                indicatorsContainer.appendChild(indicator);
+            });
+            
+            // Setup event listeners for navigation buttons
+            document.getElementById('prevVideoBtn').addEventListener('click', () => {
+                goToPrevVideo();
+            });
+            
+            document.getElementById('nextVideoBtn').addEventListener('click', () => {
+                goToNextVideo();
+            });
+            
+            // Setup swipe functionality for carousel
+            setupCarouselSwipe();
+        }
+
+        // Fungsi untuk pergi ke video tertentu
+        function goToVideo(index) {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            
+            // Remove active class from all slides and indicators
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            // Add active class to current slide and indicator
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            currentVideoIndex = index;
+            
+            // Update navigation buttons state
+            updateVideoNavigationButtons();
+        }
+
+        // Fungsi untuk pergi ke video sebelumnya
+        function goToPrevVideo() {
+            const newIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+            goToVideo(newIndex);
+        }
+
+        // Fungsi untuk pergi ke video berikutnya
+        function goToNextVideo() {
+            const newIndex = (currentVideoIndex + 1) % videos.length;
+            goToVideo(newIndex);
+        }
+
+        // Fungsi untuk update status tombol navigasi video
+        function updateVideoNavigationButtons() {
+            // Tombol navigasi video tidak perlu di-disable karena carousel bersifat loop
+            // Tetapi kita bisa menambahkan logika lain jika diperlukan
+        }
+
+        // Fungsi untuk setup swipe pada carousel
+        function setupCarouselSwipe() {
+            const carousel = document.getElementById('videoCarousel');
+            
+            carousel.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleCarouselSwipe();
+            });
+        }
+
+        // Fungsi untuk menangani swipe pada carousel
+        function handleCarouselSwipe() {
+            const swipeDistance = touchEndX - touchStartX;
+            
+            // Swipe kiri (next video)
+            if (swipeDistance < -swipeThreshold) {
+                goToNextVideo();
+            }
+            // Swipe kanan (previous video)
+            else if (swipeDistance > swipeThreshold) {
+                goToPrevVideo();
+            }
+        }
+
+        // Intersection Observer untuk efek fade in saat scroll
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Deteksi error video dan tampilkan fallback
+        function setupVideoFallbacks() {
+            const videoIframes = document.querySelectorAll('.video-wrapper iframe');
+            
+            videoIframes.forEach(iframe => {
+                iframe.addEventListener('load', function() {
+                    // Jika iframe berhasil dimuat, sembunyikan fallback
+                    const fallback = iframe.parentElement.querySelector('.video-fallback');
+                    if (fallback) {
+                        fallback.style.display = 'none';
+                    }
+                });
+                
+                iframe.addEventListener('error', function() {
+                    // Jika iframe gagal dimuat, tampilkan fallback
+                    const fallback = iframe.parentElement.querySelector('.video-fallback');
+                    if (fallback) {
+                        fallback.style.display = 'flex';
+                    }
+                });
+            });
+        }
+
+        // Smooth scroll untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Tutup menu mobile jika terbuka
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Toggle menu mobile
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Tutup menu mobile saat klik di luar
+        document.addEventListener('click', function(event) {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (window.innerWidth <= 768 && 
+                navLinks.classList.contains('active') && 
+                !event.target.closest('.nav-links') && 
+                !event.target.closest('.hamburger')) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Tutup modal saat tombol close diklik
+        document.querySelector('.close-btn').addEventListener('click', closeModal);
+
+        // Tutup modal saat klik di luar konten modal
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('destinationModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Event listeners untuk swipe functionality (mobile & tablet)
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        // Tampilkan indikator swipe hanya untuk perangkat mobile/tablet
+        function checkDeviceType() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const swipeIndicator = document.getElementById('swipeIndicator');
+            const videoSwipeIndicator = document.getElementById('videoSwipeIndicator');
+            
+            if (isMobile && swipeIndicator) {
+                swipeIndicator.style.display = 'block';
+            }
+            
+            if (isMobile && videoSwipeIndicator) {
+                videoSwipeIndicator.style.display = 'block';
+            }
+        }
+
+        // Inisialisasi halaman
+        document.addEventListener('DOMContentLoaded', function() {
+            displayDestinations(currentPage);
+            setupPagination();
+            setupVideoCarousel();
+            checkDeviceType();
+            setupVideoFallbacks();
+            
+            // Event listener untuk form kontak
+            document.getElementById('contactForm').addEventListener('submit', sendEmail);
+            
+            // Observe semua elemen dengan class yang perlu fade in
+            const fadeElements = document.querySelectorAll('.section-title, .about-img, .about-text, .contact-info, .contact-form, .footer-column, .copyright, .video-carousel');
+            fadeElements.forEach(el => {
+                scrollObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
