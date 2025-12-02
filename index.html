@@ -992,6 +992,20 @@
             color: #666;
             font-style: italic;
         }
+
+        /* Placeholder loading animation */
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
     </style>
 </head>
 <body>
@@ -1200,7 +1214,7 @@
             emailjs.init("QShw7H8y1KoiSCRx4");
         })();
 
-        // Data destinasi wisata dengan detail lengkap
+        // Data destinasi wisata dengan gambar yang diperbaiki
         const destinations = [
             {
                 id: 1,
@@ -1273,11 +1287,11 @@
             {
                 id: 2,
                 name: "Kawah Ijen",
-                image: "https://drive.google.com/thumbnail?id=11wPRlrfOzmELZdm1T6PzVHAkOrOtONTG&sz=w1000",
+                image: "https://lh3.googleusercontent.com/d/11wPRlrfOzmELZdm1T6PzVHAkOrOtONTG",
                 description: "Saksikan fenomena api biru yang langka dan pemandangan spektakuler dari kawah dengan danau asam terbesar di dunia.",
                 detail: {
                     title: "Kawah Ijen: Keajaiban Api Biru dan Danau Belerang",
-                    image: "https://drive.google.com/thumbnail?id=11wPRlrfOzmELZdm1T6PzVHAkOrOtONTG&sz=w1000",
+                    image: "https://lh3.googleusercontent.com/d/11wPRlrfOzmELZdm1T6PzVHAkOrOtONTG",
                     content: `
                         <div class="modal-section">
                             <p>Kawah Ijen merupakan salah satu destinasi wisata alam yang berbentuk kawah belerang dan ada sebuah fenomena kimia langka di alam yaitu adanya api biru.</p>
@@ -1343,11 +1357,11 @@
             {
                 id: 3,
                 name: "Air Terjun Coban Canggu",
-                image: "https://drive.google.com/thumbnail?id=13zTsLCwg3YD61l8YmsX4T9DGqKCr1-dJ&sz=w1000",
+                image: "https://lh3.googleusercontent.com/d/13zTsLCwg3YD61l8YmsX4T9DGqKCr1-dJ",
                 description: "Rasakan sensasi menyegarkan di bawah air terjun tertinggi di Jawa Timur yang dikelilingi tebing-tebing tinggi.",
                 detail: {
                     title: "Air Terjun Coban Canggu: Keindahan Penuh Misteri",
-                    image: "https://drive.google.com/thumbnail?id=13zTsLCwg3YD61l8YmsX4T9DGqKCr1-dJ&sz=w1000",
+                    image: "https://lh3.googleusercontent.com/d/13zTsLCwg3YD61l8YmsX4T9DGqKCr1-dJ",
                     content: `
                         <div class="modal-section">
                             <p>Air Terjun Coban Canggu adalah salah satu destinasi wisata alam yang memukau di Kabupaten Mojokerto, Jawa Timur. Terletak di kawasan pegunungan, air terjun ini menawarkan ketenangan, udara sejuk, dan pemandangan hijau yang menyegarkan mata. Jika Anda mencari pelarian dari hiruk-pikuk kota, Coban Canggu adalah jawabannya.</p>
@@ -1417,11 +1431,11 @@
             {
                 id: 4,
                 name: "Pantai Balekambang",
-                image: "https://drive.google.com/thumbnail?id=1ye4exw-DJLYzkDD2MAtnPz2TJna7NqBs&sz=w1000",
+                image: "https://lh3.googleusercontent.com/d/1ye4exw-DJLYzkDD2MAtnPz2TJna7NqBs",
                 description: "Pantai dengan pasir putih dan tiga pulau kecil yang dihubungkan jembatan. Sering disebut 'Tanah Lot-nya Jawa Timur'.",
                 detail: {
                     title: "Pantai Balekambang: Keindahan Pesisir Selatan Malang",
-                    image: "https://drive.google.com/thumbnail?id=1ye4exw-DJLYzkDD2MAtnPz2TJna7NqBs&sz=w1000",
+                    image: "https://lh3.googleusercontent.com/d/1ye4exw-DJLYzkDD2MAtnPz2TJna7NqBs",
                     content: `
                         <div class="modal-section">
                             <p>Pantai Balekambang adalah sebuah pantai di pesisir selatan yang terletak di tepi Samudera Indonesia secara administratif masuk wilayah Dusun Sumber Jambe, Desa Srigonco, Kecamatan Bantur, Kabupaten Malang, Jawa Timur dan merupakan salah satu wisata di Kabupaten Malang sejak 1985 hingga kini. Pantai ini berjarak sekitar 65 km dari pusat Kota Malang dan dapat ditempuh dalam waktu 2-3 jam.</p>
@@ -1486,11 +1500,11 @@
             {
                 id: 5,
                 name: "Gunung Semeru",
-                image: "https://drive.google.com/thumbnail?id=1e5e6_1gVAbso_gjN7uIdd-7259q4s9ZU&sz=w1000",
+                image: "https://lh3.googleusercontent.com/d/1e5e6_1gVAbso_gjN7uIdd-7259q4s9ZU",
                 description: "Gunung tertinggi di Pulau Jawa dengan puncak Mahameru. Perjalanan mendaki yang menantang dengan pemandangan spektakuler.",
                 detail: {
                     title: "Gunung Semeru: Puncak Tertinggi Jawa dengan Segudang Keindahan",
-                    image: "https://drive.google.com/thumbnail?id=1e5e6_1gVAbso_gjN7uIdd-7259q4s9ZU&sz=w1000",
+                    image: "https://lh3.googleusercontent.com/d/1e5e6_1gVAbso_gjN7uIdd-7259q4s9ZU",
                     content: `
                         <div class="modal-section">
                             <p>Semeru adalah salah satu gunung di Jawa Timur dengan puncak yang termasuk tertinggi di Jawa dengan banyak keindahan alam yang seperti serpihan surga yang turun ke dunia.</p>
@@ -1558,11 +1572,11 @@
             {
                 id: 6,
                 name: "Pantai Pasir Putih Trenggalek",
-                image: "https://drive.google.com/thumbnail?id=1qiDT5Y8inQdjI1cnHvgZztp9CBt0wCjg&sz=w1000",
+                image: "https://lh3.googleusercontent.com/d/1qiDT5Y8inQdjI1cnHvgZztp9CBt0wCjg",
                 description: "Pantai dengan pasir putih dan formasi batuan karang yang unik. Destinasi favorit di Trenggalek.",
                 detail: {
                     title: "Pantai Pasir Putih Trenggalek: Keindahan di Teluk Prigi",
-                    image: "https://drive.google.com/thumbnail?id=1qiDT5Y8inQdjI1cnHvgZztp9CBt0wCjg&sz=w1000",
+                    image: "https://lh3.googleusercontent.com/d/1qiDT5Y8inQdjI1cnHvgZztp9CBt0wCjg",
                     content: `
                         <div class="modal-section">
                             <p>Pantai Pasir Putih Trenggalek adalah salah satu destinasi wisata alam yang memukau di Kabupaten Trenggalek, Jawa Timur. Terletak di kawasan Teluk Prigi, pantai ini menawarkan ketenangan, udara sejuk, dan pemandangan biru laut, bukit tinggi nan hijau yang sangat memukau. Merupakan satu dari tiga pantai yang ada di teluk prigi menjadi salah satu pilihan destinasi wisata di Trenggalek.</p>
@@ -1636,11 +1650,11 @@
             {
                 id: 7,
                 name: "Coban Rondo",
-                image: "https://drive.google.com/file/d/1iwvV3ysbE8w7bgCsQfeec39qwCOvkSxb/view?usp=sharing",
+                image: "https://lh3.googleusercontent.com/d/1iwvV3ysbE8w7bgCsQfeec39qwCOvkSxb",
                 description: "Air terjun mempesona di lereng Gunung Panderman dengan ketinggian 84 meter, dikelilingi suasana sejuk dan hijau.",
                 detail: {
                     title: "Coban Rondo: Air Terjun Mempesona di Lereng Gunung Panderman",
-                    image: "https://drive.google.com/file/d/1iwvV3ysbE8w7bgCsQfeec39qwCOvkSxb/view?usp=sharing",
+                    image: "https://lh3.googleusercontent.com/d/1iwvV3ysbE8w7bgCsQfeec39qwCOvkSxb",
                     content: `
                         <div class="modal-section">
                             <p>Coban Rondo adalah air terjun yang mempesona yang terletak di lereng Gunung Panderman, Kabupaten Malang. Dengan ketinggian sekitar 84 meter, air terjun ini menawarkan suasana sejuk dan hijau yang cocok untuk melepas penat. Namanya yang berarti "Air Terjun Janda" menyimpan legenda cinta yang tragis, menambah daya tarik mistis bagi pengunjung.</p>
@@ -1689,11 +1703,11 @@
             {
                 id: 8,
                 name: "Gunung Kelud",
-                image: "https://drive.google.com/file/d/1JXNWspaVkQ10TVyoIu7eFBOqNbJ3cNA9/view?usp=drive_link",
+                image: "https://lh3.googleusercontent.com/d/1JXNWspaVkQ10TVyoIu7eFBOqNbJ3cNA9",
                 description: "Gunung api aktif dengan kubah lava baru dan lanskap vulkanik dramatis pasca letusan 2014, bagaikan permukaan bulan.",
                 detail: {
                     title: "Gunung Kelud: Dramanya Kekuatan Vulkanik Bumi",
-                    image: "https://drive.google.com/file/d/1JXNWspaVkQ10TVyoIu7eFBOqNbJ3cNA9/view?usp=drive_link",
+                    image: "https://lh3.googleusercontent.com/d/1JXNWspaVkQ10TVyoIu7eFBOqNbJ3cNA9",
                     content: `
                         <div class="modal-section">
                             <p>Gunung Kelud adalah salah satu gunung api paling aktif dan bersejarah di Jawa Timur. Setelah letusan spektakuler pada tahun 2014, kawasan ini berubah menjadi destinasi wisata yang unik dengan pemandangan kubah lava baru dan lanskap vulkanik yang dramatis, bagaikan permukaan bulan.</p>
@@ -1743,11 +1757,11 @@
             {
                 id: 9,
                 name: "Teluk Bidadari",
-                image: "https://drive.google.com/file/d/1_wyFhc0QVrjbNvFXUEoULP9SUWZ5BEzo/view?usp=drive_link",
+                image: "https://lh3.googleusercontent.com/d/1_wyFhc0QVrjbNvFXUEoULP9SUWZ5BEzo",
                 description: "Primadona Taman Nasional Karimunjawa dengan pantai pasir putih halus dan air laut biru kehijauan yang jernih.",
                 detail: {
                     title: "Teluk Bidadari: Keindahan Surgawi di Karimunjawa",
-                    image: "https://drive.google.com/file/d/1_wyFhc0QVrjbNvFXUEoULP9SUWZ5BEzo/view?usp=drive_link",
+                    image: "https://lh3.googleusercontent.com/d/1_wyFhc0QVrjbNvFXUEoULP9SUWZ5BEzo",
                     content: `
                         <div class="modal-section">
                             <p>Teluk Bidadari adalah salah satu primadona di Taman Nasional Karimunjawa yang menawarkan pantai dengan pasir putih halus dan air laut biru kehijauan yang jernih. Namanya yang berarti "Teluk Bidadari" sangat cocok dengan keindahan surgawi yang ditawarkannya.</p>
@@ -1797,11 +1811,11 @@
             {
                 id: 10,
                 name: "Pulau Sempu",
-                image: "https://drive.google.com/file/d/1AugYQeJ0Oj-t98rFN252K9dbDI_efuHd/view?usp=drive_link",
+                image: "https://lh3.googleusercontent.com/d/1AugYQeJ0Oj-t98rFN252K9dbDI_efuHd",
                 description: "Cagar alam dengan danau air asin tersembunyi Segara Anakan, surga tersembunyi di selatan Malang yang masih sangat alami.",
                 detail: {
                     title: "Pulau Sempu: Petualangan Menuju Surga Tersembunyi",
-                    image: "https://drive.google.com/file/d/1AugYQeJ0Oj-t98rFN252K9dbDI_efuHd/view?usp=drive_link",
+                    image: "https://lh3.googleusercontent.com/d/1AugYQeJ0Oj-t98rFN252K9dbDI_efuHd",
                     content: `
                         <div class="modal-section">
                             <p>Pulau Sempu adalah cagar alam yang masih sangat alami dan dilindungi di selatan Malang. Pulau tak berpenghuni ini menyimpan sebuah danau air asin yang tersembunyi bernama Segara Anakan, yang dianggap sebagai "hidden paradise" sejati.</p>
@@ -1853,11 +1867,11 @@
             {
                 id: 11,
                 name: "Air Terjun Tumpak Sewu",
-                image: "https://drive.google.com/file/d/1i3glupVm_jhpIcEwig3xIQCttfAN7wsQ/view?usp=drive_link",
+                image: "https://lh3.googleusercontent.com/d/1i3glupVm_jhpIcEwig3xIQCttfAN7wsQ",
                 description: "Niagara-nya Indonesia dengan bentangan lebar ratusan jalur air yang jatuh dari tebing berbatu, pemandangan dramatis di perbatasan Lumajang-Malang.",
                 detail: {
                     title: "Air Terjun Tumpak Sewu: Niagara-nya Indonesia",
-                    image: "https://drive.google.com/file/d/1i3glupVm_jhpIcEwig3xIQCttfAN7wsQ/view?usp=drive_link",
+                    image: "https://lh3.googleusercontent.com/d/1i3glupVm_jhpIcEwig3xIQCttfAN7wsQ",
                     content: `
                         <div class="modal-section">
                             <p>Air Terjun Tumpak Sewu, yang berarti "Seribu Air Terjun", sering dijuluki sebagai "Niagara-nya Indonesia". Terletak di perbatasan Lumajang dan Malang, air terjun ini memiliki bentuk yang unik berupa bentangan lebar dengan ratusan jalur air yang jatuh dari tebing berbatu, menciptakan pemandangan yang sangat dramatis.</p>
@@ -1936,31 +1950,31 @@
             }
         ];
 
-        // Data video untuk carousel
+        // Data video untuk carousel dengan YouTube links
         const videos = [
             {
                 id: 1,
                 title: "Keindahan Alam Jawa Timur",
-                src: "https://drive.google.com/file/d/1F3h7rrKDe5BxhUB2F9SdyjBaujs_e3Os/view?usp=drive_link",
-                caption: "Video dokumenter keindahan alam Jawa Timur - Sumber: YouTube"
+                src: "https://www.youtube.com/embed/VIDEO_ID_1",
+                caption: "Video dokumenter keindahan alam Jawa Timur"
             },
             {
                 id: 2,
                 title: "Air Terjun Coban Glotak Malang",
-                src: "https://drive.google.com/file/d/1Al2okExYBefi-tElTQWzMS5_oJdrv88g/view?usp=drive_link",
-                caption: "Dokumenter Perjalanan Coban Glotak - Sumber: YouTube"
+                src: "https://www.youtube.com/embed/VIDEO_ID_2",
+                caption: "Dokumenter Perjalanan Coban Glotak"
             },
             {
                 id: 3,
                 title: "Gunung Bromo",
-                src: "https://drive.google.com/file/d/11ShQ_da9pGlYqFyh-jiwKh56gzQ4uB0x/view?usp=drive_link",
-                caption: "Pendakian ke puncak - Sumber: YouTube"
+                src: "https://www.youtube.com/embed/VIDEO_ID_3",
+                caption: "Pendakian ke puncak"
             },
             {
                 id: 4,
                 title: "Pantai Balekambang - Tanah Lot-nya Jawa Timur",
-                src: "https://drive.google.com/file/d/1gQzpV2kic1vSFxLGqXc_7-tgE7l6YQrs/view?usp=drive_link",
-                caption: "Keindahan pantai dengan tiga pulau kecil - Sumber: YouTube"
+                src: "https://www.youtube.com/embed/VIDEO_ID_4",
+                caption: "Keindahan pantai dengan tiga pulau kecil"
             }
         ];
 
@@ -1990,26 +2004,16 @@
                 const card = document.createElement('div');
                 card.className = 'destinasi-card';
                 
-                // Buat elemen gambar dengan fallback
-                const imgElement = document.createElement('img');
-                imgElement.src = destination.image;
-                imgElement.alt = destination.name;
-                imgElement.loading = 'lazy';
-                
-                // Tambahkan event handler untuk error gambar
-                imgElement.onerror = function() {
-                    console.log(`Gambar untuk ${destination.name} gagal dimuat, menggunakan fallback`);
-                    this.src = 'https://images.unsplash.com/photo-1578321272179-b2b1d152a48f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';
-                };
-                
-                // Tambahkan event handler untuk load gambar
-                imgElement.onload = function() {
-                    console.log(`Gambar untuk ${destination.name} berhasil dimuat`);
-                };
+                // Gunakan gambar fallback jika gambar utama gagal
+                const defaultImage = 'https://images.unsplash.com/photo-1578321272179-b2b1d152a48f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';
                 
                 card.innerHTML = `
                     <div class="card-img">
-                        <!-- Gambar akan dimuat melalui JavaScript -->
+                        <img src="${destination.image}" 
+                             alt="${destination.name}" 
+                             loading="lazy"
+                             onerror="this.onerror=null; this.src='${defaultImage}';">
+                        <div class="image-loading">Memuat gambar...</div>
                     </div>
                     <div class="card-content">
                         <h3>${destination.name}</h3>
@@ -2018,9 +2022,24 @@
                     </div>
                 `;
                 
-                // Tambahkan gambar ke card
-                card.querySelector('.card-img').appendChild(imgElement);
                 container.appendChild(card);
+                
+                // Preload gambar untuk performa lebih baik
+                const img = card.querySelector('img');
+                const loadingDiv = card.querySelector('.image-loading');
+                
+                if (img.complete) {
+                    loadingDiv.style.display = 'none';
+                } else {
+                    loadingDiv.style.display = 'flex';
+                    img.onload = function() {
+                        loadingDiv.style.display = 'none';
+                    };
+                    img.onerror = function() {
+                        loadingDiv.style.display = 'none';
+                        console.log(`Gambar ${destination.name} gagal dimuat`);
+                    };
+                }
             });
             
             // Tambahkan event listener untuk tombol detail
@@ -2241,7 +2260,7 @@
                                 allowfullscreen>
                         </iframe>
                         <div class="video-fallback" style="display: none;">
-                            <p>Video tidak dapat dimuat. Silakan kunjungi <a href="${video.src.replace('embed/', 'watch?v=')}" target="_blank">tautan ini</a> untuk menonton video.</p>
+                            <p>Video tidak dapat dimuat. Silakan kunjungi YouTube untuk menonton video.</p>
                         </div>
                     </div>
                     <p class="video-caption">${video.caption}</p>
